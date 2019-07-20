@@ -36,7 +36,7 @@ def read_temp():
 
 #run checks
 if len(sys.argv) < 2:
-  print("Give me a file name argument i.e. 'python chill.py test.csv'")
+  print("Give me a file name argument i.e. 'python chill.py test001.csv'")
   sys.exit()
 elif ".csv" not in sys.argv[1]:
   print("Nedd a .csv brah")
