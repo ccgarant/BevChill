@@ -14,7 +14,8 @@ def read_temp():
   #data
   time_stamp = time.strftime('%x %X')
   elapsed_time = time.time() - start_time  #seconds
-  data = []
+  elapsed_time = round(elapsed_time,3)
+        
   data = [
       time_stamp, 
       elapsed_time, 
