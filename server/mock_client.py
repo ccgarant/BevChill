@@ -26,9 +26,9 @@ class RandomTempThread(Thread):
             rand_point = random.uniform(0, 1)
             number = last_temp
             if rand_point < prob:
-                number -= rand_point
+                number -= 2 * rand_point
             else:
-                number += rand_point - prob
+                number += 2 * rand_point - prob
             number = round(number, 2)
             print(number)
             self.app.emit('newnumber', {'number': number}, namespace='/test')
