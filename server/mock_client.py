@@ -1,4 +1,4 @@
-from random import random
+import random
 from time import sleep
 from threading import Thread, Event
 
@@ -17,9 +17,19 @@ class RandomTempThread(Thread):
         Ideally to be run in a separate thread
         """
         # infinite loop of magical random numbers
-        print("Making random numbers")
+        print("Making random walk of numbers")
+        # Probability to move up
+        prob = 0.5
+        last_temp = 75
+
         while not thread_stop_event.isSet():
-            number = round(random() * 10, 3)
+            rand_point = random.uniform(0, 1)
+            number = last_temp
+            if rand_point < prob:
+                number -= rand_point
+            else:
+                number += rand_point - prob
+            number = round(number, 2)
             print(number)
             self.app.emit('newnumber', {'number': number}, namespace='/test')
             sleep(self.delay)

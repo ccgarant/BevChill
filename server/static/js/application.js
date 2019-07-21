@@ -5,17 +5,17 @@ $(document).ready(function(){
 
     //receive details from server
     socket.on('newnumber', function(msg) {
-        console.log("Received number" + msg.number);
+        console.log("Received number: " + msg.number);
         //maintain a list of ten numbers
-        if (numbers_received.length >= 10){
+        if (numbers_received.length >= 4){
             numbers_received.shift()
         }
         numbers_received.push(msg.number);
         numbers_string = '';
-        for (var i = 0; i < numbers_received.length; i++){
+        for (var i = numbers_received.length - 1; i >= 0; i--){
             numbers_string = numbers_string + '<p>' + numbers_received[i].toString() + '</p>';
         }
-        $('#log').html(numbers_string);
+        $('#data').html(numbers_string);
     });
 
 });
