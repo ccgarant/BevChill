@@ -14,12 +14,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns; sns.set()
 
 
-#assumes you are already in the directory /Documents/Github/BevChill
-base_dir = os.getcwd()
-os.chdir("TestResults")
-
+#determine the data test file to read
 file = 'Perroni_bottle_20190725.csv'
 file_name = 'Perroni_bottle_20190725'
+
+#start in directory /Documents/Github/BevChill
+base_dir = os.getcwd()
+os.chdir("TestResults")
 
 #read in data as a dataframe
 p = pd.read_csv(file,names=['time_stamp','elapsed_time','tempC_probe',
