@@ -15,8 +15,9 @@ import seaborn as sns; sns.set()
 
 
 #determine the data test file to read
-file = 'Perroni_bottle_20190725.csv'
-file_name = 'Perroni_bottle_20190725'
+file = 'DogFishHead_SeaQuenchAle_Can_20190726.csv'
+file_split = file.split('.')
+file_name = file_split[0] # e.g. 'DogFishHead_SeaQuenchAle_Can_20190726'
 
 #start in directory /Documents/Github/BevChill
 base_dir = os.getcwd()
@@ -33,7 +34,7 @@ p['time_stamp'] = p['time_stamp'].str.strip("[")
 p['humidity %'] = p['humidity %'].str.strip("]")
 
 #ambient freezer air temp, plot of intermittent readings
-p[:30].plot(x='elapsed_time',y='tempC_amb',figsize=(10,5),lw=4,title='Perroni in Freezer')
+p[:30].plot(x='elapsed_time',y='tempC_amb',figsize=(10,5),lw=4,title=file_name)
 
 #ambient sensor is intermittent, randomly writes 0, this 
 #for now smooths the data. It replaces all 0s as NaN then 
@@ -45,15 +46,15 @@ p['tempC_amb'] = p_smoothed
 #quick plots
 
 #probe beer fluid temp inside container
-p.plot(x='elapsed_time',y='tempC_probe',figsize=(10,5),lw=4,title='Perroni in Freezer')
+p.plot(x='elapsed_time',y='tempC_probe',figsize=(10,5),lw=4,title=file_name)
 
 #ambient freezer air temp
-p.plot(x='elapsed_time',y='tempC_amb',figsize=(10,5),lw=4,title='Perroni in Freezer')
+p.plot(x='elapsed_time',y='tempC_amb',figsize=(10,5),lw=4,title=file_name)
 
 #freezer and beer temp
-p.plot(x='elapsed_time',y=['tempC_probe','tempC_amb'],figsize=(10,5),lw=4,title='Perroni in Freezer')
+p.plot(x='elapsed_time',y=['tempC_probe','tempC_amb'],figsize=(10,5),lw=4,title=file_name)
 
 #freezer and beer temp, first 30 rows
-p[:30].plot(x='elapsed_time',y=['tempC_probe','tempC_amb'],figsize=(10,5),lw=4,title='Perroni in Freezer')
+p[:30].plot(x='elapsed_time',y=['tempC_probe','tempC_amb'],figsize=(10,5),lw=4,title=file_name + ', first 30 rows')
 
 os.chdir(base_dir)
