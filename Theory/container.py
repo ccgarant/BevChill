@@ -39,27 +39,30 @@ class Container:
     """
 
     #init
-    def __init__(self,container_type):
-        self.container_type = container_type
+    def __init__(self,beverage):
+        self.container_type = beverage['container_type']
         if self.container_type == 'bottle':
-            return self.bottle()
+            return self.bottle(beverage)
         else:
             print('container type not available yet')
         
-    def bottle(self):
+    def bottle(self,beverage):
         '''defines geometric and material attributes for the
             container type'''
         
-        '''geometry properties'''
+        ''' geometry parameters '''
 
         #bottle cylinder inner radius
-        self.r_inner = .0273  #m
+        self.r_inner = beverage['r_inner']  #m
         
         #bottle cylinder inner radius
-        self.r_outter = .0309 #m
+        self.r_outter = beverage['r_outter'] #m
         
         #bottle fluid volume capacity
-        self.volume = 3.55e-4 #m
+        self.volume = beverage['volume'] #m
+        
+        
+        '''geometry properties'''
         
         #bottle wall thickness
         self.thickness = self.r_outter-self.r_inner #m
@@ -69,13 +72,13 @@ class Container:
         #note: there is a portion of fluid in the bottle neck
         #the equivalent height assumes all the fluid is in the main
         #body in an ideal cylinder of radius inner.
-        self.H_equiv = self.volume / (pi * self.r_inner**2)
+        self.H_equiv = self.volume / (pi * self.r_inner**2) #[m]
         
         #inner surface area
-        self.A_inner = 2 * pi * self.r_inner * self.H_equiv
+        self.A_inner = 2 * pi * self.r_inner * self.H_equiv  #[m]
         
         #outter surface area
-        self.A_outter = 2 * pi * self.r_outter * self.H_equiv
+        self.A_outter = 2 * pi * self.r_outter * self.H_equiv  #[m]
         
         '''material properties'''
         
