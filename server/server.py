@@ -5,11 +5,8 @@ Aim is to create a web app that is constantly updated with temperatures sent by 
 @author=henry garant
 """
 
-from threading import Thread
-
 from flask_socketio import SocketIO
 from flask import Flask, render_template
-from mock_client import RandomTempThread
 
 
 app = Flask(__name__)
@@ -18,10 +15,6 @@ app.config['DEBUG'] = True
 
 # turn the flask app into a socketio app
 socketio = SocketIO(app)
-
-#random temperature Generator Thread
-thread = Thread()
-
 
 @app.route('/')
 def index():
@@ -32,18 +25,16 @@ def index():
 @socketio.on('connect', namespace='/data')
 def test_connect():
     # need visibility of the global thread object
-    global thread
     print('Client connected')
-
-    #Start the random temperature generator thread only if the thread has not been started before.
-    if not thread.isAlive():
-        print("Starting Thread")
-        thread = RandomTempThread(socketio)
-        thread.start()
 
 @socketio.on('disconnect', namespace='/data')
 def test_disconnect():
     print('Client disconnected')
+
+@socketio.on('data', namespace='/data')
+def test_data(data):
+    print(data)
+    socketio.emit('data', data, namespace='/data')
 
 
 if __name__ == '__main__':

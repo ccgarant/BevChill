@@ -34,7 +34,7 @@ class RandomTempThread(Thread):
                 "tempF_probe": number,
                 "tempC_amb": 24.0,
                 "tempF_amb": 75.2,
-                "tempC_humidity": 52.0
+                "humidity": 52.0
             }
 
             self.app.emit('data', data, namespace='/data')
