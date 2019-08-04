@@ -2,9 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="719b516d-b8f6-47dc-ad75-f393d904bad1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/chill.py" afterPath="$PROJECT_DIR$/client/chill.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/mock_client.py" afterPath="$PROJECT_DIR$/server/mock_client.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.py" afterPath="$PROJECT_DIR$/server/server.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Theory/.ipynb_checkpoints/BevChill WhitePaper-checkpoint.ipynb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Theory/BevChill WhitePaper.ipynb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TestResults/DogFishHead_Can_OpenBevvsClosedBevTempDiff_20190726.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TestResults/DogFishHead_Can_WarmUpOpened_20190726.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TestResults/DogFishHead_SeaQuenchAle_Can_20190726.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DHT11_Python/LICENSE.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TestResults/Notes.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TestResults/Perroni_20190724 Part 1.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TestResults/Perroni_20190724_Part2.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TestResults/Perroni_20190724_Part3.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TestResults/Perroni_bottle_20190725.csv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DHT11_Python/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test_Plot.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/Test_Plots_header_missing_data-checkpoint.ipynb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test_Plots_header_missing_data.ipynb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DHT11_Python/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Theory/beer.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/chillDHT11_Temp_and_Humidity.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/chillDHT11_Temp_and_HumidityOneReading.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Theory/chillTimer.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Theory/container.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DHT11_Python/dht11.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DHT11_Python/dht11_example.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Theory/peroni_bottle.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Theory/scriptTest.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Theory/theory_brainstorm_notes.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/Test_Plots.ipynb" afterPath="$PROJECT_DIR$/client/Test_Plots.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/chill.py" afterPath="$PROJECT_DIR$/chill.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BevChill.iws" />
@@ -39,10 +64,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.040609136" vertical-offset="178" max-vertical-offset="966">
+            <state vertical-scroll-proportion="-3.2" vertical-offset="130" max-vertical-offset="966">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="e#214#249#0" expanded="true" />
@@ -51,14 +76,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chill.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="chill.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/chill.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.88" vertical-offset="1638" max-vertical-offset="2436">
-              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-              <folding>
-                <element signature="e#10#33#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-1.9314721" vertical-offset="1648" max-vertical-offset="2436">
+              <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -76,7 +99,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.9" vertical-offset="225" max-vertical-offset="1008">
+            <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1008">
               <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
               <folding />
             </state>
@@ -145,6 +168,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -179,7 +203,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -199,8 +222,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\henry_000\Documents\BevChill\server" />
       <recent name="C:\Users\henry_000\Documents\BevChill\client" />
+      <recent name="C:\Users\henry_000\Documents\BevChill\server" />
     </key>
   </component>
   <component name="RunManager" selected="Python.chill">
@@ -439,20 +462,20 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897863" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29369798" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936978" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29369798" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -476,6 +499,56 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/client/test.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="966">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#214#249#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/chill.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1638" max-vertical-offset="2436">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/static/js/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1197" max-vertical-offset="2478">
+          <caret line="64" column="9" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1008">
+          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/static/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3066" max-vertical-offset="3654">
+          <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="168" max-vertical-offset="294">
@@ -530,9 +603,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="223" max-vertical-offset="903">
           <caret line="33" column="23" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="77" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -574,9 +644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="693">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -656,9 +723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.28" vertical-offset="362" max-vertical-offset="1029">
           <caret line="39" column="52" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,7 +736,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.9" vertical-offset="225" max-vertical-offset="1008">
+        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1008">
           <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
           <folding />
         </state>
@@ -686,23 +750,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/chill.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.88" vertical-offset="1638" max-vertical-offset="2436">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-          <folding>
-            <element signature="e#10#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.040609136" vertical-offset="178" max-vertical-offset="966">
+        <state vertical-scroll-proportion="-3.2" vertical-offset="130" max-vertical-offset="966">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="e#214#249#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chill.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1890">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/chill.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.9314721" vertical-offset="1648" max-vertical-offset="2436">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
