@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
     <script src="static/js/application.js"></script>
 
@@ -21,8 +21,7 @@
 <div class="container">
     <div class="jumbotron">
         <h1>BevChill</h1>
-
-        <p>Powered by Flask/Socket.io</p>
+        <div id="connectButton" class="disconnected">Connection</div>
     </div>
 </div>
 
@@ -30,11 +29,11 @@
 
 <div class="container col-md-4" id="content">
     <div class="row">
-        <h3>Live Temperature Data</h3>
-
-        <canvas id="myChart"></canvas>
 
         <div id="data"></div>
+
+        <h3>Live Temperature Data</h3>
+        <canvas id="myChart"></canvas>
 
     </div>
 </div>

@@ -29,7 +29,7 @@ def index():
     return render_template('index.html')
 
 
-@socketio.on('connect', namespace='/test')
+@socketio.on('connect', namespace='/data')
 def test_connect():
     # need visibility of the global thread object
     global thread
@@ -41,11 +41,10 @@ def test_connect():
         thread = RandomTempThread(socketio)
         thread.start()
 
-
-@socketio.on('disconnect', namespace='/test')
+@socketio.on('disconnect', namespace='/data')
 def test_disconnect():
     print('Client disconnected')
 
 
 if __name__ == '__main__':
-    socketio.run(app, host='192.168.1.180', port=5000)
+    socketio.run(app, host="192.168.1.180", port=5000)

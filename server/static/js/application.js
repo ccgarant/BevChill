@@ -1,6 +1,7 @@
 $(document).ready(function(){
     //connect to the socket server.
-    var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+    var socket = io.connect('http://' + document.domain + ':' + location.port + '/data');
+    
     var MAX_POINTS = 15;
     var MAX_DATA = 1;
     var numbers_received = [];
@@ -55,26 +56,43 @@ $(document).ready(function(){
     var numPoints = 0;
 
     //receive details from server
-    socket.on('newnumber', function(msg) {
-        console.log("Received number: " + msg.number);
+    socket.on('data', function(data) {
+        console.log("Received data: " + data);
         numPoints++;
         //maintain a list of ten numbers
         if (numbers_received.length >= MAX_DATA){
             numbers_received.shift()
         }
-        numbers_received.push(msg.number);
+        numbers_received.push(data.tempF_probe);
         numbers_string = '';
-        for (var i = numbers_received.length - 1; i >= 0; i--){
-            numbers_string = numbers_string + '<p>' + numbers_received[i].toString() + '</p>';
+        for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+                for (var i = numbers_received.length - 1; i >= 0; i--){
+                    numbers_string = numbers_string + '<p class=\'data\'>' + key + ": " + data[key].toString() + '</p>';
+                }
+            }
         }
 
         //add the data to number stream
         $('#data').html(numbers_string);
+
         //add the data to chart
         addData(chart, numPoints, numbers_received[numbers_received.length - 1])
         if(numPoints > MAX_POINTS){
             removeData(chart);
         }
+    });
+
+    socket.on('connect', function(socket){
+        console.log("I'm connected");
+        $('#connectButton').html("Connected");
+        $('#connectButton').addClass('connected').removeClass('disconnected');
+    });
+
+    socket.on('disconnect', function () {
+        console.log("I'm disconnected");
+        $('#connectButton').html("Disconnected");
+        $('#connectButton').addClass('disconnected').removeClass('connected');
     });
 });
 
