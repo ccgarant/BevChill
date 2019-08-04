@@ -15,3 +15,5 @@ Start client to collect and send data
 cd client
 python chill.py
 ```
+
+Open http://192.168.1.180:5000/ on web to view dashboard
