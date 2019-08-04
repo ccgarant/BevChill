@@ -28,20 +28,39 @@ class Beverage:
         '''defines geometric and material attributes for the
         container type'''
 
-        ''' fluid properities '''
-
-        '''geometry properties'''
-
-        '''material properties'''
-
+        '''fluid properities'''
+        #Assumption, properties of water at 275 degK (37.6 degF)
+        #Table A.6 and A.4, Ref[1]
+        
+        #volumetric thermal expansion, Beta
+        self.beta = 46/10**6 #[m**3]
+        
+        #viscosity, u
+        self.u = 1652/10**6
+        
+        #thermal resistance ***check***
+        self.k = 0.5985 #[W/m*K]
+        
         #material density rho
         self.rho = 1000 * beverage['specific_gravity']  #[kh/m^3]
 
-        #thermal resistance ***check***
-        self.k = 0.5985 #[W/m*K]
-
         #thermal heat capacity ***check***
-        self.C = 4189 #[J/kg*K]
+        self.C = 4211 #[J/kg*K]
+
+        #dynamic viscosity, v
+        self.v = self.u/self.rho  #[m**2/s]
+
+        #alpha
+        self.alpha = 1.3631e-7
+
+
+'''References:
+
+    [1] Fundamentals of Heat and Mass Transfer, 6th Edition, Incropera, 2007
+    
+    
+'''
+
 
 
 

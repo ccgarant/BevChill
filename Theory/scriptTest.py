@@ -5,12 +5,21 @@ Created on Sat Aug  3 12:10:36 2019
 
 @author: christophegarant
 """
+
+import math as m
+import numpy as np
+
 from peroni_bottle import peroni_bottle
 from container import Container
+from beer import Beverage
 
 
-c = Container(peroni_bottle)
+bottle = Container(peroni_bottle)
+beer = Beverage(peroni_bottle)
 
-print(c.container_type)
-print(c.r_inner,c.r_outter,c.volume)
-print(c.A_inner,c.A_outter,c.thickness)
+Pr = .7132
+top = (.75*Pr)**(1/2)
+bottom = (.609+1.221*Pr**(1/2)+1.238*Pr)**(1/4)
+g = top/bottom
+
+print(top,bottom,g)
