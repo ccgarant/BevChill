@@ -12,6 +12,6 @@ Open ANOTHER terminal with first still running
 
 Start client to collect and send data
 ```python
-cd ../client
+cd client
 python chill.py
 ```
