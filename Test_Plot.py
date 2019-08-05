@@ -15,7 +15,7 @@ import seaborn as sns; sns.set()
 
 
 #determine the data test file to read
-file = 'DogFishHead_SeaQuenchAle_Can_20190726.csv'
+file = 'Perroni_bottle_20190725.csv'
 file_split = file.split('.')
 file_name = file_split[0] # e.g. 'DogFishHead_SeaQuenchAle_Can_20190726'
 
@@ -57,4 +57,18 @@ p.plot(x='elapsed_time',y=['tempC_probe','tempC_amb'],figsize=(10,5),lw=4,title=
 #freezer and beer temp, first 30 rows
 p[:30].plot(x='elapsed_time',y=['tempC_probe','tempC_amb'],figsize=(10,5),lw=4,title=file_name + ', first 30 rows')
 
+#'''matplotlib plots'''
+#plt.plot(p.elapsed_time, p.tempC_probe, 'b')
+#plt.plot(p.elapsed_time, p.tempC_amb, 'r')
+#plt.legend(loc='best')
+#plt.xlabel('time [sec]')
+#plt.ylabel('Temp [degC]')
+#plt.title('Bev Temp vs Time')
+##plt.figsize=(10,6)
+#plt.grid()
+#plt.show()
+
 os.chdir(base_dir)
+
+
+

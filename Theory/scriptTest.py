@@ -6,20 +6,14 @@ Created on Sat Aug  3 12:10:36 2019
 @author: christophegarant
 """
 
-import math as m
-import numpy as np
-
 from peroni_bottle import peroni_bottle
-from container import Container
-from beer import Beverage
+from thermalResistance import *
+from scipy.integrate import odeint, solve_ivp
+import matplotlib.pyplot as plt
+from numpy import linspace
 
+#(T - T_inf)/R_total = (beer.rho*bottle.volume*beer.C)*dTdt
+#dTdt = ()/(R_total*(beer.rho*bottle.volume*beer.C))
 
-bottle = Container(peroni_bottle)
-beer = Beverage(peroni_bottle)
-
-Pr = .7132
-top = (.75*Pr)**(1/2)
-bottom = (.609+1.221*Pr**(1/2)+1.238*Pr)**(1/4)
-g = top/bottom
-
-print(top,bottom,g)
+x = (beer.rho*bottle.volume*beer.C)
+print(x)

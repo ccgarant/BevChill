@@ -19,6 +19,11 @@ T_atm = 294  #[degK] 69.7 degF
 T_inf = 276  #[degK] 37.6 degF
 T_s   = 294  #[degK] 69.7 degF - for now assume T_s = T_inf
 gravity = 9.81 #m/s**2, gravity
+print(f'Initial Conditions are:')
+print(f'T_atm {T_atm} degK')
+print(f'T_inf {T_inf} degK')
+print(f'T_s {T_s} degK')
+print(f'gravity {gravity} m/s^2 \n')
 
 '''R1, internal convection from beer'''
 #R1_conv_int = 1/(h_inner*A_surface)
