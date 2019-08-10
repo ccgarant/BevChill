@@ -23,7 +23,7 @@ Open ANOTHER terminal with first still running
 Start client to collect and send data
 ```python
 cd client
-python chill.py
+python chill.py [type_in_test_file.csv]
 ```
 
 Open http://192.168.1.180:5000/ on web to view dashboard
