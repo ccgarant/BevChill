@@ -6,6 +6,7 @@ Aim is to create a web app that is constantly updated with temperatures sent by 
 """
 
 import socket
+import pprint
 from flask_socketio import SocketIO
 from flask import Flask, render_template
 
@@ -33,15 +34,18 @@ def test_disconnect():
 
 @socketio.on('data')
 def test_data(data):
-    print(data)
-    socketio.emit('data', data)
+	print("\nReceived Data")
+	print("-----------------------------------------------")
+	pprint.pprint(data)
+	print("-----------------------------------------------\n")
+	socketio.emit('data', data)
 
 
 if __name__ == '__main__':
 	#get local ip address of this computer to use for running the server
 	ip_address = socket.gethostbyname(socket.gethostname())
-	print("\n\n-----------------------------------------------")
+	print("\n-----------------------------------------------")
 	print("SERVER IP ADDRESS: " + ip_address)
-	print("-----------------------------------------------\n\n")
+	print("-----------------------------------------------\n")
 
 	socketio.run(app, host=ip_address, port=5000)
