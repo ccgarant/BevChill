@@ -1,5 +1,7 @@
 # BevChill
 
+- - -
+
 Open terminal on laptop
 
 ### Start server
@@ -15,7 +17,7 @@ MY IP ADDRESS:
 
 ##### Copy the IP ADDRESS
 
-
+- - -
 
 
 ### Start client
@@ -28,5 +30,7 @@ Start client to collect and send data
 cd client
 python chill.py [server_ip] [type_in_test_file.csv]
 ```
+
+- - -
 
 Open http://\*server_ip\*:5000/ on web to view dashboard
