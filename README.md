@@ -22,7 +22,10 @@ MY IP ADDRESS:
 ### Start client
 Open ANOTHER terminal with first still running
 
-##### SSH into your pi
+SSH into your pi using [GNU Screen](https://www.linode.com/docs/networking/ssh/using-gnu-screen-to-manage-persistent-terminal-sessions/)
+```bash
+ssh -t pi@<pi_ip_addresss> screen -r
+```
 
 Start client to collect and send data
 ```bash
@@ -35,3 +38,11 @@ python chill.py [server_ip] [type_in_test_file.csv]
 ### View data
 
 Open http://\*MY IP ADDRESS\*:5000/ on web to view live data
+
+- - -
+
+### End Screen 
+
+Ctrl+a d
+
+Ctrl+c
