@@ -56,12 +56,12 @@ def read_temp():
     print("---------------------")
 
     #write data to file
-    with open(file_name, 'a', newline='') as file:
+    with open(file_name, 'a') as file:
         #writes dictionary in csv format
         w = csv.DictWriter(file, chill_data.keys())
         w.writerow(chill_data)
 
-    sio.emit('data', chill_data, namespace='/data')
+    sio.emit('data', chill_data)
 
 #run checks
 if len(sys.argv) < 2:
@@ -85,7 +85,7 @@ else:
     }
 
     #add column titles to file
-    with open(file_name, 'w', newline='') as file:
+    with open(file_name, 'w') as file:
         w = csv.DictWriter(file, chill_data.keys())
         w.writeheader()
 
