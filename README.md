@@ -30,8 +30,11 @@ ssh -t pi@<pi_ip_addresss> screen -r
 Start client to collect and send data
 ```bash
 cd client
-python chill.py [server_ip] [type_in_test_file.csv]
+python chill.py -i <MY IP ADDRESS> -o <type_in_test_file.csv>
 ```
+_-i := server ip_
+
+_-o := output file name_
 
 - - -
 
