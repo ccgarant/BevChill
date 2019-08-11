@@ -2,9 +2,10 @@
 
 - - -
 
+### Start server
+
 Open terminal on laptop
 
-### Start server
 ```python
 cd server
 python server.py
@@ -23,7 +24,7 @@ MY IP ADDRESS:
 ### Start client
 Open ANOTHER terminal with first still running
 
-_SSH into your pi_
+##### SSH into your pi
 
 Start client to collect and send data
 ```python
@@ -33,4 +34,6 @@ python chill.py [server_ip] [type_in_test_file.csv]
 
 - - -
 
-Open http://\*server_ip\*:5000/ on web to view dashboard
+### View data
+
+Open http://\*MY IP ADDRESS\*:5000/ on web to view live data
