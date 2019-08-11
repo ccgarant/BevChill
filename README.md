@@ -1,7 +1,5 @@
 # BevChill
 
-- - -
-
 ### Start server
 
 Open terminal on laptop
