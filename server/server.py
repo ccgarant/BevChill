@@ -22,19 +22,19 @@ def index():
     return render_template('index.html')
 
 
-@socketio.on('connect', namespace='/data')
+@socketio.on('connect')
 def test_connect():
     # need visibility of the global thread object
     print('Client connected')
 
-@socketio.on('disconnect', namespace='/data')
+@socketio.on('disconnect')
 def test_disconnect():
     print('Client disconnected')
 
-@socketio.on('data', namespace='/data')
+@socketio.on('data')
 def test_data(data):
     print(data)
-    socketio.emit('data', data, namespace='/data')
+    socketio.emit('data', data)
 
 
 if __name__ == '__main__':
