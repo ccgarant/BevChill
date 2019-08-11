@@ -1,6 +1,6 @@
 # imports
-# import RPi.GPIO as GPIO
-# from w1thermsensor import W1ThermSensor
+import RPi.GPIO as GPIO
+from w1thermsensor import W1ThermSensor
 import threading
 import sys, getopt
 import time
@@ -9,28 +9,29 @@ import socketio
 import pprint
 
 # import from other file
-# sys.path.append('/home/pi/BevChill/DHT11_Python')
-# import dht11
-# GPIO.setwarnings(True)
-# GPIO.setmode(GPIO.BCM)
+sys.path.append('/home/pi/BevChill/DHT11_Python')
+import dht11
+GPIO.setwarnings(True)
+GPIO.setmode(GPIO.BCM)
 
-def read_temp():
+def collect_data_and_send():
+    """
+    Gathers data from the sensors, writes data to output file,
+    emits data to the server.
+
+    Invokes thread that executes a function after a 'sleep_time' interval has passed
+
+    """
+
     threading.Timer(sleep_time, read_temp).start()
     
     ### Data Gathering ###
-    # tempHumid = DHT11.read()
-    # tempC_amb = tempHumid.temperature
-    # tempF_amb = (tempC_amb*1.8)+32
-    # humidity = tempHumid.humidity
-    # tempC_probe = THERM.get_temperature()
-    # tempF_probe = THERM.get_temperature(W1ThermSensor.DEGREES_F)
-    tempC_amb = 0
-    tempF_amb = 32
-    humidity = 69
-    tempC_probe = 0
-    tempF_probe = 32
-    # print("Temperature: %-3.1f C" % tempHumid.temperature)
-    # print("Humidity: %-3.1f %%" % tempHumid.humidity)
+    tempHumid = DHT11.read()
+    tempC_amb = tempHumid.temperature
+    tempF_amb = (tempC_amb*1.8)+32
+    humidity = tempHumid.humidity
+    tempC_probe = THERM.get_temperature()
+    tempF_probe = THERM.get_temperature(W1ThermSensor.DEGREES_F)
 
     ### Time Gathering ###
     time_stamp = time.strftime('%x %X')
@@ -58,29 +59,58 @@ def read_temp():
         w = csv.DictWriter(file, chill_data.keys())
         w.writerow(chill_data)
 
+    #send data to server
     sio.emit('data', chill_data)
 
 def check_arguments(argv):
-    inputfile = ''
-    outputfile = ''
+    """
+    Checks the arguments passed to the program.
+
+    Will only procede with running the porgram if the correct
+    arguments are present i.e -i <server ip> -o <outputfile.csv>
+
+    Parameters
+    ----------
+    argv : list[str]
+    list of arguments given when the program was executed
+
+    Returns
+    ----------
+    ip, output_file_name : touple
+    the server ip and the output file name
+    """
+
+    ip_address = None
+    output_file_name = None
     try:
-        opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+        opts, args = getopt.getopt(argv,"hi:o:",["ip=","ofile="])
     except getopt.GetoptError:
-        print('test.py -i <inputfile> -o <outputfile>')
+        print('usage: chill.py -i <server ip> -o <outputfile.csv>')
         sys.exit(2)
 
     for opt, arg in opts:
+        ### Help Argument ###
         if opt == '-h':
-            print('test.py -i <inputfile> -o <outputfile>')
+            print('usage: chill.py -i <server ip> -o <outputfile.csv>')
             sys.exit()
-        elif opt in ("-i", "--ifile"):
-            inputfile = arg
-        elif opt in ("-o", "--ofile"):
-            outputfile = arg
+        
+        ### Server IP Argument ###
+        elif opt in ("-i", "--ip"):
+            ip_address = arg
 
-    print('Input file is ' + inputfile)
-    print('Output file is ' + outputfile)
-    return inputfile, outputfile
+        ### Output File Name Argument ###
+        elif opt in ("-o", "--ofile"):
+            if '.csv' in arg:
+                output_file_name = arg
+            else:
+                print('need a .csv output file brah!')
+                
+    if ip_address and output_file_name:
+        return ip_address, output_file_name
+    else:
+        print('error parsing arguments')
+        print('usage: chill.py -i <server ip> -o <outputfile.csv>')
+        sys.exit()
 
 if __name__ == "__main__":
     ip, test_file_name = check_arguments(sys.argv[1:])
@@ -89,7 +119,7 @@ if __name__ == "__main__":
     start_time = time.time()
     sleep_time = 10  #time between temperature readings
 
-    ### Init Data ###
+    ### Init Data Structure ###
     chill_data = {
         "time_stamp": "",
         "elapsed_time": 0,
@@ -106,22 +136,25 @@ if __name__ == "__main__":
         w.writeheader()
 
     ##for probe DS18 sensor ##
-    # THERM = W1ThermSensor()
+    THERM = W1ThermSensor()
 
     ##for ambient DHT11 temp & humidity sensor ##
     # read data using pin 12
-    # DHT11 = dht11.DHT11(pin=12)
-
+    DHT11 = dht11.DHT11(pin=12)
+ 
     sio = socketio.Client()
-    sio.connect('http://'+ip+':5000')
-    read_temp()
-    sio.wait()
-
     @sio.event
     def connect():
-        print("Client connected!")
-
+        print("Connected to Server!")
     @sio.event
     def disconnect():
-        print("Client disconnected!")
+        print("Disconnected from Server!")
+
+    #connect to server and start reading data
+    sio.connect('http://'+ip+':5000')
+    collect_data_and_send()
+
+    
+
+
 
