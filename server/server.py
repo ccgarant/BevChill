@@ -9,6 +9,8 @@ import socket
 import pprint
 from flask_socketio import SocketIO
 from flask import Flask, render_template
+from Theory.peroni_bottle import peroni_bottle
+from Theory.chill_timer import ChillTimer
 
 
 app = Flask(__name__)
@@ -17,6 +19,9 @@ app.config['DEBUG'] = True
 
 # turn the flask app into a socketio app
 socketio = SocketIO(app)
+
+#perform Theory calculation
+chill_timer = ChillTimer(peroni_bottle)
 
 @app.route('/')
 def index():
@@ -34,6 +39,10 @@ def test_disconnect():
 
 @socketio.on('data')
 def test_data(data):
+	#inject Theory calculated data
+	data["theory_tempC"] = chill_timer.get_temperature_at_second(data["elapsed_time"])
+	data["theory_remaining_time"] = chill_timer.get_remaining_time_until_temp(desired_temp=5, curr_temp=data["tempC_probe"])
+	
 	print("\nReceived Data")
 	print("-----------------------------------------------")
 	pprint.pprint(data)

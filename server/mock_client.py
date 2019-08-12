@@ -1,3 +1,4 @@
+# imports
 import threading
 import sys, getopt
 import time
@@ -17,9 +18,17 @@ def collect_data_and_send():
 
     threading.Timer(sleep_time, collect_data_and_send).start()
 
+    ### Data Gathering ###
+    chill_data["tempC_probe"] = 20
+    chill_data["tempF_probe"] = 0
+    chill_data["tempC_amb"] = 0
+    chill_data["tempF_amb"] = 0
+    chill_data["humidity"] = 0
+
     ### Time Gathering ###
     chill_data["time_stamp"] = time.strftime('%x %X')
-    chill_data["elapsed_time"] =  str(datetime.timedelta(seconds=int(time.time() - start_time)))  #H:MM:SS
+    chill_data["elapsed_time"] = int(time.time() - start_time)
+    chill_data["elapsed_time_formatted"] = str(datetime.timedelta(seconds=chill_data["elapsed_time"]))  #H:MM:SS
 
     #info to print to screen
     print("\nSending Data")
@@ -97,6 +106,7 @@ if __name__ == "__main__":
     global chill_data
     chill_data = {
         "time_stamp": "",
+        "elapsed_time_formatted": "",
         "elapsed_time": 0,
         "tempC_probe": 0,
         "tempF_probe": 0,
@@ -109,7 +119,7 @@ if __name__ == "__main__":
     with open(test_file_name, 'w') as file:
         w = csv.DictWriter(file, chill_data.keys())
         w.writeheader()
- 
+
     sio = socketio.Client()
     @sio.event
     def connect():

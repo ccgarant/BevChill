@@ -40,7 +40,8 @@ def collect_data_and_send():
 
     ### Time Gathering ###
     chill_data["time_stamp"] = time.strftime('%x %X')
-    chill_data["elapsed_time"] =  str(datetime.timedelta(seconds=int(time.time() - start_time)))  #H:MM:SS
+    chill_data["elapsed_time"] = int(time.time() - start_time)
+    chill_data["elapsed_time_formatted"] =  str(datetime.timedelta(seconds= chill_data["elapsed_time"]))  #H:MM:SS
 
     #info to print to screen
     print("\nSending Data")
@@ -118,6 +119,7 @@ if __name__ == "__main__":
     global chill_data
     chill_data = {
         "time_stamp": "",
+        "elapsed_time_formatted": "",
         "elapsed_time": 0,
         "tempC_probe": 0,
         "tempF_probe": 0,
