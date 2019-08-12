@@ -1,29 +1,51 @@
 # BevChill
 
-Open terminal
-
 ### Start server
-```python
+
+Open terminal on laptop
+
+```bash
 cd server
 python server.py
 ```
-This will attempt to start a server at http://192.168.1.180:5000/
 
-_If you get an error that it cannot start at this location run_
-```python
-ifconfig
+Look for the line 
+```bash
+MY IP ADDRESS:
 ```
-_And look for an ip that starts with 192.168_
-_Copy this and replace '192.168.1.180' in server.py and chill.py_ 
+
+##### Copy the IP ADDRESS
+
+- - -
 
 
 ### Start client
 Open ANOTHER terminal with first still running
 
-Start client to collect and send data
-```python
-cd client
-python chill.py [type_in_test_file.csv]
+SSH into your pi using [GNU Screen](https://www.linode.com/docs/networking/ssh/using-gnu-screen-to-manage-persistent-terminal-sessions/)
+```bash
+ssh -t pi@<pi_ip_addresss> screen -r
 ```
 
-Open http://192.168.1.180:5000/ on web to view dashboard
+Start client to collect and send data
+```bash
+cd client
+python chill.py -i <MY IP ADDRESS> -o <type_in_test_file.csv>
+```
+_-i := server ip_
+
+_-o := output file name_
+
+- - -
+
+### View data
+
+Open http://\*MY IP ADDRESS\*:5000/ on web to view live data
+
+- - -
+
+### End Screen 
+
+Ctrl+a d
+
+Ctrl+c

@@ -18,26 +18,27 @@
 </head>
 
 <body>
-<div class="container">
-    <div class="jumbotron">
-        <h1>BevChill</h1>
-        <div id="connectButton" class="disconnected">Connection</div>
-    </div>
+
+<div class="container"> 
+    <div class="row"> 
+        <!--Title Section-->
+        <div class="col-sm-6">
+            <h1>Bev Chill</h1>
+            <div id="connectButton" class="disconnected">Connection</div>
+
+            <h4>Live Data</h4>
+            <div id="data">
+                <!--Data Section-->
+            </div>
+        </div>
+
+        <!--Chart Section-->
+        <div class="col-sm-6">
+            <h3>Temperature</h3>
+            <canvas id="myChart"></canvas>
+        </div> 
+    </div> 
 </div>
-
-</div>
-
-<div class="container col-md-4" id="content">
-    <div class="row">
-
-        <div id="data"></div>
-
-        <h3>Live Temperature Data</h3>
-        <canvas id="myChart"></canvas>
-
-    </div>
-</div>
-
 
 </body>
 </html>
