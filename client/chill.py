@@ -23,29 +23,23 @@ def collect_data_and_send():
 
     """
 
-    threading.Timer(sleep_time, read_temp).start()
-    
+    threading.Timer(sleep_time, collect_data_and_send).start()
+
     ### Data Gathering ###
+    chill_data["tempC_probe"] = THERM.get_temperature()
+    chill_data["tempF_probe"] = THERM.get_temperature(W1ThermSensor.DEGREES_F)
     tempHumid = DHT11.read()
-    tempC_amb = tempHumid.temperature
-    tempF_amb = (tempC_amb*1.8)+32
-    humidity = tempHumid.humidity
-    tempC_probe = THERM.get_temperature()
-    tempF_probe = THERM.get_temperature(W1ThermSensor.DEGREES_F)
+
+    #if we can't get a valid reading aka the sensor shit the bed
+    #then we'll use previous reading
+    if tempHumid.is_valid():
+        chill_data["tempC_amb"] = tempHumid.temperature
+        chill_data["tempF_amb"] = (tempC_amb*1.8)+32
+        chill_data["humidity"] = tempHumid.humidity
 
     ### Time Gathering ###
-    time_stamp = time.strftime('%x %X')
-    elapsed_time = time.time() - start_time  #seconds
-    elapsed_time = round(elapsed_time, 3)
-
-    ### Data List ###
-    chill_data["time_stamp"] = time_stamp
-    chill_data["elapsed_time"] = elapsed_time
-    chill_data["tempC_probe"] = tempC_probe
-    chill_data["tempF_probe"] = tempF_probe
-    chill_data["tempC_amb"] = tempC_amb
-    chill_data["tempF_amb"] = tempF_amb
-    chill_data["humidity"] = humidity
+    chill_data["time_stamp"] = time.strftime('%x %X')
+    chill_data["elapsed_time"] = round(time.time() - start_time, 3)  #seconds
 
     #info to print to screen
     print("\nSending Data")
@@ -120,14 +114,15 @@ if __name__ == "__main__":
     sleep_time = 10  #time between temperature readings
 
     ### Init Data Structure ###
+    global chill_data
     chill_data = {
         "time_stamp": "",
         "elapsed_time": 0,
         "tempC_probe": 0,
         "tempF_probe": 0,
-        "tempC_amb": 0,
-        "tempF_amb": 0,
-        "humidity": 0
+        "tempC_amb": -1,
+        "tempF_amb": -1,
+        "humidity": -1
     }
 
     #add column titles to file
