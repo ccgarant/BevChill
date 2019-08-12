@@ -4,6 +4,7 @@ import time
 import csv
 import socketio
 import pprint
+import datetime
 
 def collect_data_and_send():
     """
@@ -14,28 +15,11 @@ def collect_data_and_send():
 
     """
 
-    threading.Timer(sleep_time, read_temp).start()
-    
-    ### Data Gathering ###
-    tempC_amb = 0
-    tempF_amb = 32
-    humidity = 75
-    tempC_probe = 0
-    tempF_probe = 32
+    threading.Timer(sleep_time, collect_data_and_send).start()
 
     ### Time Gathering ###
-    time_stamp = time.strftime('%x %X')
-    elapsed_time = time.time() - start_time  #seconds
-    elapsed_time = round(elapsed_time, 3)
-
-    ### Data List ###
-    chill_data["time_stamp"] = time_stamp
-    chill_data["elapsed_time"] = elapsed_time
-    chill_data["tempC_probe"] = tempC_probe
-    chill_data["tempF_probe"] = tempF_probe
-    chill_data["tempC_amb"] = tempC_amb
-    chill_data["tempF_amb"] = tempF_amb
-    chill_data["humidity"] = humidity
+    chill_data["time_stamp"] = time.strftime('%x %X')
+    chill_data["elapsed_time"] =  str(datetime.timedelta(seconds=int(time.time() - start_time)))  #H:MM:SS
 
     #info to print to screen
     print("\nSending Data")
@@ -49,13 +33,14 @@ def collect_data_and_send():
         w = csv.DictWriter(file, chill_data.keys())
         w.writerow(chill_data)
 
+    #send data to server
     sio.emit('data', chill_data)
 
 def check_arguments(argv):
     """
     Checks the arguments passed to the program.
 
-    Will only procede with running the porgram if the correct
+    Will only procede with running the program if the correct
     arguments are present i.e -i <server ip> -o <outputfile.csv>
 
     Parameters
@@ -109,14 +94,15 @@ if __name__ == "__main__":
     sleep_time = 10  #time between temperature readings
 
     ### Init Data Structure ###
+    global chill_data
     chill_data = {
         "time_stamp": "",
         "elapsed_time": 0,
         "tempC_probe": 0,
         "tempF_probe": 0,
-        "tempC_amb": 0,
-        "tempF_amb": 0,
-        "humidity": 0
+        "tempC_amb": -1,
+        "tempF_amb": -1,
+        "humidity": -1
     }
 
     #add column titles to file

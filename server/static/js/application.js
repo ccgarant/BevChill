@@ -2,9 +2,19 @@ $(document).ready(function(){
     //connect to the socket server.
     var socket = io.connect('http://' + document.domain + ':' + location.port);
     
-    var MAX_POINTS = 15;
+    var MAX_POINTS = 20;
     var MAX_DATA = 1;
     var numbers_received = [];
+
+    var units = {
+        "time_stamp": "",
+        "elapsed_time": "",
+        "tempC_probe": "°C",
+        "tempF_probe": "°F",
+        "tempC_amb": "°C",
+        "tempF_amb": "°F",
+        "humidity": "%"
+      };
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
@@ -38,7 +48,7 @@ $(document).ready(function(){
                         display:false
                     },
                     ticks: {
-                      fontColor: "rgba(9, 132, 227,0.9)",
+                      fontColor: "#ecf0f1",
                     }
                 }],
                 yAxes: [{
@@ -46,7 +56,7 @@ $(document).ready(function(){
                         display:false
                     },
                     ticks: {
-                      fontColor: "rgba(9, 132, 227,0.9)",
+                      fontColor: "#ecf0f1",
                     }
                 }]
             }
@@ -68,7 +78,9 @@ $(document).ready(function(){
         for (var key in data) {
             if (data.hasOwnProperty(key)) {
                 for (var i = numbers_received.length - 1; i >= 0; i--){
-                    numbers_string = numbers_string + '<p class=\'data\'>' + key + ": " + data[key].toString() + '</p>';
+                    var dataHeader = '<h4>' + key.toUpperCase() +  '</h4>'
+                    var dataBody = '<p>' + data[key].toString() + units[key] + '</p>'
+                    numbers_string = numbers_string + dataHeader + dataBody;
                 }
             }
         }
@@ -85,13 +97,13 @@ $(document).ready(function(){
 
     socket.on('connect', function(socket){
         console.log("I'm connected");
-        $('#connectButton').html("Connected");
+        $('#connectButton').html("CONNECTED");
         $('#connectButton').addClass('connected').removeClass('disconnected');
     });
 
     socket.on('disconnect', function () {
         console.log("I'm disconnected");
-        $('#connectButton').html("Disconnected");
+        $('#connectButton').html("DISCONNECTED");
         $('#connectButton').addClass('disconnected').removeClass('connected');
     });
 });

@@ -7,6 +7,7 @@ import time
 import csv
 import socketio
 import pprint
+import datetime
 
 # import from other file
 sys.path.append('/home/pi/BevChill/DHT11_Python')
@@ -39,7 +40,7 @@ def collect_data_and_send():
 
     ### Time Gathering ###
     chill_data["time_stamp"] = time.strftime('%x %X')
-    chill_data["elapsed_time"] = round(time.time() - start_time, 3)  #seconds
+    chill_data["elapsed_time"] =  str(datetime.timedelta(seconds=int(time.time() - start_time)))  #H:MM:SS
 
     #info to print to screen
     print("\nSending Data")
@@ -60,7 +61,7 @@ def check_arguments(argv):
     """
     Checks the arguments passed to the program.
 
-    Will only procede with running the porgram if the correct
+    Will only procede with running the program if the correct
     arguments are present i.e -i <server ip> -o <outputfile.csv>
 
     Parameters
@@ -148,8 +149,3 @@ if __name__ == "__main__":
     #connect to server and start reading data
     sio.connect('http://'+ip+':5000')
     collect_data_and_send()
-
-    
-
-
-

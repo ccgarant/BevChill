@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Heebo:700&display=swap');
 
 * {
 	-webkit-box-sizing: border-box;
@@ -9,7 +10,7 @@ body {
 	font-family: 'Source Sans Pro', sans-serif;
 	line-height: 1.75em;
 	font-size: 16px;
-	background-color: #090909;
+	background-color:#121212;
 	color: #0984e3;
 }
 
@@ -53,8 +54,9 @@ p {
 }
 
 h1 {
-
-	font-size: 30px;
+	color: #ecf0f1;
+	font-family: 'Heebo', sans-serif;
+	font-size: 40px;
 	line-height: 34px;
 }
 
@@ -64,7 +66,7 @@ h2 {
 }
 
 h3 {
-    color: rgba(9, 132, 227,0.60);
+    color: #ecf0f1;
 	font-size: 25px;
 	line-height: 27px;
 	padding-top: 2px;
@@ -120,49 +122,44 @@ aside,
 .connected{
 	display: inline-block;
 	border-radius: 5px;
-	padding: 5px;
-	color: rgba(29, 209, 161,0.6);
-	background-color: rgba(29, 209, 161,0.22);
-  	border-style: solid;
-  	border-width: 1px;
-  	border-color: rgba(29, 209, 161,0.9);
-}
-
-.connected:hover{
-	color: rgba(29, 209, 161,0.9);
-	background-color: rgba(29, 209, 161,0.3);
+	padding: 2px 15px;
+	color: #ecf0f1;
+	background-color: #00b894;
 }
 
 .disconnected{
 	display: inline-block;
 	border-radius: 5px;
-	padding: 5px;
-	color: rgba(255, 107, 107,0.6);
-	background-color: rgba(255, 107, 107,0.22);
-  	border-style: solid;
-  	border-width: 1px;
-  	border-color: rgba(255, 107, 107,0.9);
+	padding: 2px 15px;
+	color: #ecf0f1;
+	background-color: #ff5252;
 }
 
-.disconnected:hover{
-	color: rgba(255, 107, 107,0.9);
-	background-color: rgba(255, 107, 107,0.3);
-}
-
-.data{
-	font-size: 21px;
-  	font-family: 'Source Sans Pro', sans-serif;
+#data{
 	border-radius: 5px;
-	padding: 5px 10px;
-	margin 10px;
-	color: rgba(236, 240, 241,0.9);
+	padding: 1px 5px 1px 5px;
   	border-style: solid;
   	border-width: 1px;
-  	border-color: rgba(236, 240, 241,0.9);
+  	border-color: #5a5a5a;
 }
 
-.data:hover{
-	color: rgba(236, 240, 241,0.9);
-	background-color: rgba(236, 240, 241,0.1);
-	border-color: rgba(9, 132, 227,0.9);
+h4{
+	font-size: 20px;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: #ecf0f1;
+}
+
+#data h4{
+	font-size: 16px;
+	padding: 0px;
+	margin-bottom: 5px;
+	margin-top: 25px;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: #ecf0f1be;
+}
+
+#data p{
+	font-size: 2.5em;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: #ecf0f1;
 }
