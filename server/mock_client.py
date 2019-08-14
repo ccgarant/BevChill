@@ -21,7 +21,7 @@ def collect_data_and_send():
     ### Data Gathering ###
     chill_data["tempC_probe"] = 20
     chill_data["tempF_probe"] = 0
-    chill_data["tempC_amb"] = 0
+    chill_data["tempC_amb"] = 15
     chill_data["tempF_amb"] = 0
     chill_data["humidity"] = 0
 
