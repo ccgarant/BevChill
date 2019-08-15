@@ -18,15 +18,15 @@ class ThermalResistance:
         
     """
     
-    def __init__(self,beverage,container):
+    def __init__(self, beverage, container, start_temp, atm_temp):
         self.container = container
         self.beverage = beverage
 
         '''Assumptions'''
         #For now assume freezer temp T_inf = 273.15K (0 deg C, 32 deg F)
-        self.T_atm = 294  #[degK] 69.7 degF
+        self.T_atm = atm_temp + 273.15
         self.T_inf = 276  #[degK] 37.6 degF
-        self.T_s   = 294  #[degK] 69.7 degF - for now assume T_s = T_inf
+        self.T_s   = start_temp + 273.15
         self.gravity = 9.81 #m/s**2, gravity
         self.sigma = 5.67e-8  #[W/(m**2*degK**4)] radiation coefficient sigma
         
@@ -51,6 +51,9 @@ class ThermalResistance:
 
     def get_T_inf(self):
         return self.T_inf
+
+    def get_T_init(self):
+        return self.T_s
 
     def calculate_total_resistance(self):
         ''' 

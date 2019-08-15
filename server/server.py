@@ -16,18 +16,16 @@ from Theory.chill_timer import ChillTimer
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 app.config['DEBUG'] = True
+chill_timer = None
+calculated_chill = False
 
 # turn the flask app into a socketio app
 socketio = SocketIO(app)
-
-#perform Theory calculation
-chill_timer = ChillTimer(peroni_bottle)
 
 @app.route('/')
 def index():
     #only by sending this page first will the client be connected to the socketio instance
     return render_template('index.html')
-
 
 @socketio.on('connect')
 def test_connect():
@@ -37,11 +35,29 @@ def test_connect():
 def test_disconnect():
     print('Client disconnected')
 
+@socketio.on('start')
+def on_start(started):
+	print('Client started')
+	socketio.emit('start', started)
+
+@socketio.on('running')
+def on_running(started):
+	socketio.emit('running', started)
+
 @socketio.on('data')
 def test_data(data):
-	#inject Theory calculated data
-	data["theory_tempC"] = chill_timer.get_temperature_at_second(data["elapsed_time"])
-	data["theory_remaining_time"] = chill_timer.get_remaining_time_until_temp(desired_temp=5, curr_temp=data["tempC_probe"])
+	
+	if not calculated_chill:
+		#perform Theory calculation
+		global chill_timer
+		chill_timer = ChillTimer(drink=peroni_bottle, start_temp=data['tempC_probe'], atm_temp=data['tempC_amb'])
+		print("\nCalculated Theory\n")
+
+	if chill_timer:
+		#inject Theory calculated data
+		data["theory_tempC"] = chill_timer.get_temperature_at_second(data["elapsed_time"])
+		data["theory_remaining_time"] = chill_timer.get_remaining_time_until_temp(desired_temp=peroni_bottle['perfect'], curr_temp=data["tempC_probe"])
+		data["chill"] = chill_timer.get_chill_zone(data['tempC_probe'])
 	
 	print("\nReceived Data")
 	print("-----------------------------------------------")

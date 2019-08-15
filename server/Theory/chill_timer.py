@@ -26,18 +26,18 @@ class ChillTimer:
         
     """
     
-    def __init__(self,drink):
+    def __init__(self, drink, start_temp, atm_temp):
         self.drink = drink
         self.bottle = Container(drink)
         self.beer = Beverage(drink)
-        self.resistance = ThermalResistance(self.beer, self.bottle)
+        self.resistance = ThermalResistance(self.beer, self.bottle, start_temp, atm_temp)
         self.R_total = self.resistance.calculate_total_resistance()
         self.T_atm = self.resistance.get_T_atm()
         self.T_inf = self.resistance.get_T_inf()
-        self.t_hrs = 5
+        self.t_hrs = 4
         self.t_sec = self.t_hrs*60*60  #60 min/hr * 60 sec/min = sec/hr
         self.t_eval = arange(0,self.t_sec+1,1)
-        self.T_init = self.T_atm
+        self.T_init = self.resistance.get_T_init()
 
         sol = solve_ivp(self.dTdt,[0, self.t_sec],[self.T_init],t_eval=self.t_eval)
 
@@ -74,6 +74,18 @@ class ChillTimer:
         desired_time = min(range(len(self.T_C)), key=lambda i: abs(self.T_C[i]-desired_temp))
         curr_time = min(range(len(self.T_C)), key=lambda i: abs(self.T_C[i]-curr_temp))
         return str(datetime.timedelta(seconds=desired_time - curr_time))
+
+    def get_chill_zone(self, curr_temp):
+        if curr_temp > self.drink['warm']:
+            return "Piss Warm"
+        elif curr_temp > self.drink['good']:
+            return "Warm"
+        elif curr_temp > self.drink['perfect']:
+            return "Good"
+        elif curr_temp > self.drink['frozen']:
+            return "Perfect"
+        else:
+            return "Frozen"
     
     #heat transfer equation ,first order ordinary differential equation (ODE)
     #see scipy.integrate.solve_ivp docs
