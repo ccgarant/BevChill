@@ -40,7 +40,9 @@ _-o := output file name_
 
 ### View data
 
-Open http://\*MY IP ADDRESS\*:5000/ on web to view live data
+Open http://\*MY IP ADDRESS\*:5000/ on web
+
+Click Start Button at top to view live data
 
 - - -
 

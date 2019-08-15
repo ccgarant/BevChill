@@ -15,8 +15,9 @@ def collect_data_and_send():
     Invokes thread that executes a function after a 'sleep_time' interval has passed
 
     """
-
-    threading.Timer(sleep_time, collect_data_and_send).start()
+    global data_thread
+    data_thread = threading.Timer(sleep_time, collect_data_and_send)
+    data_thread.start()
 
     ### Data Gathering ###
     chill_data["tempC_probe"] = 20
@@ -110,9 +111,9 @@ if __name__ == "__main__":
         "elapsed_time": 0,
         "tempC_probe": 0,
         "tempF_probe": 0,
-        "tempC_amb": -1,
-        "tempF_amb": -1,
-        "humidity": -1
+        "tempC_amb": 0,
+        "tempF_amb": 0,
+        "humidity": 0
     }
 
     #add column titles to file
@@ -127,7 +128,18 @@ if __name__ == "__main__":
     @sio.event
     def disconnect():
         print("Disconnected from Server!")
+    @sio.event
+    def start(started):
+        if started == 'true':
+            print("Starting!")
+            collect_data_and_send()
+            sio.emit('running', 'true')
+        else:
+            print("Stopping!")
+            data_thread.cancel()
+            sio.emit('running', 'false')
 
     #connect to server and start reading data
     sio.connect('http://'+ip+':5000')
-    collect_data_and_send()
+    sio.emit('running', 'false')
+    

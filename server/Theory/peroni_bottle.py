@@ -19,6 +19,11 @@ peroni_bottle = {
         'beverage_type': 'beer',
         'beer_type': 'pilsner',
         'specific_gravity': 1.005, #pilsner, needs verification
-        'alcohol_percent': 4.6
-        
+        'alcohol_percent': 4.6,
+
+        #bev chill zones
+        'frozen': 0,
+        'perfect': 4,
+        'good' : 7,
+        'warm' : 16
         }

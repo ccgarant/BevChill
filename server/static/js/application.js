@@ -12,6 +12,7 @@ $(document).ready(function(){
     var MAX_POINTS = 20;
     var MAX_DATA = 1;
     var numPoints = 0;
+    var running = false;
     var measuredTemps = [];
     var theoryTemps = [];
     var ambientTemps = [];
@@ -25,7 +26,8 @@ $(document).ready(function(){
         "tempF_probe": "°F",
         "tempC_amb": "°C",
         "tempF_amb": "°F",
-        "humidity": "%"
+        "humidity": "%",
+        "chill": ""
       };
 
     var smallChart = createChart(document.getElementById('smallChart').getContext('2d'), 3);
@@ -76,6 +78,15 @@ $(document).ready(function(){
     //receive data from server
     socket.on('data', function(data) {
         console.log("Received data: " + data);
+        
+        //if connect while receiving data then we are running
+        //set button to handle stop running
+        if(!running){
+            $('#connectButton').html("STOP");
+            $('#connectButton').addClass('disconnected').removeClass('connected');
+            running = true;
+        }
+
         numPoints++;
         
         if (measuredTemps.length >= MAX_DATA){
@@ -98,11 +109,15 @@ $(document).ready(function(){
         for (var key in data) {
             if (data.hasOwnProperty(key)) {
                 for (var i = measuredTemps.length - 1; i >= 0; i--){
-                    if(key.toUpperCase() == "ELAPSED_TIME"){
+                    if(key.toUpperCase() == "ELAPSED_TIME" || key.toUpperCase() == "TIME_STAMP"){
                         continue;
                     }
-                    var dataHeader = '<h4>' + key.toUpperCase() +  '</h4>'
-                    var dataBody = '<p>' + data[key].toString() + units[key] + '</p>'
+                    var dataHeader = '<h4>' + key.toUpperCase() +  '</h4>';
+                    var dataBody = '<p>' + data[key].toString() + units[key] + '</p>';
+                    if(key.toUpperCase() == "CHILL"){
+                        dataBody = '<p><span class=\'chill\'>' + data[key].toString() + units[key] + '</span></p>'
+                    }
+                    
                     numbers_string = numbers_string + dataHeader + dataBody;
                 }
             }
@@ -120,17 +135,27 @@ $(document).ready(function(){
         addBarData(barChart, numPoints, measuredTemps[measuredTemps.length - 1], theoryTemps[theoryTemps.length - 1], ambientTemps[ambientTemps.length - 1])
     });
 
-    socket.on('connect', function(socket){
-        console.log("I'm connected");
-        $('#connectButton').html("CONNECTED");
-        $('#connectButton').addClass('connected').removeClass('disconnected');
+    socket.on('running', function (started) {
+        if(started == 'true'){
+            running = true;
+            console.log("I'm disconnected");
+            $('#connectButton').html("STOP");
+            $('#connectButton').addClass('disconnected').removeClass('connected');
+        }else{
+            running = false;
+            console.log("I'm connected, now ready to start");
+            $('#connectButton').html("START");
+            $('#connectButton').addClass('connected').removeClass('disconnected');
+        }
     });
 
-    socket.on('disconnect', function () {
-        console.log("I'm disconnected");
-        $('#connectButton').html("DISCONNECTED");
-        $('#connectButton').addClass('disconnected').removeClass('connected');
-    });
+    $( "#connectButton").click(function() {
+        if($('#connectButton').html() == 'START'){
+            socket.emit('start', 'true');
+        }else{
+            socket.emit('start', 'false');
+        }
+      });
 });
 
 function addData(chart, label, measured, theory) {

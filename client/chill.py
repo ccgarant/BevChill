@@ -24,19 +24,21 @@ def collect_data_and_send():
 
     """
 
-    threading.Timer(sleep_time, collect_data_and_send).start()
+    global data_thread
+    data_thread = threading.Timer(sleep_time, collect_data_and_send)
+    data_thread.start()
 
     ### Data Gathering ###
-    chill_data["tempC_probe"] = THERM.get_temperature()
-    chill_data["tempF_probe"] = THERM.get_temperature(W1ThermSensor.DEGREES_F)
+    chill_data["tempC_probe"] = round(THERM.get_temperature(), 3)
+    chill_data["tempF_probe"] = round(THERM.get_temperature(W1ThermSensor.DEGREES_F), 3)
     tempHumid = DHT11.read()
 
     #if we can't get a valid reading aka the sensor shit the bed
     #then we'll use previous reading
     if tempHumid.is_valid():
-        chill_data["tempC_amb"] = tempHumid.temperature
-        chill_data["tempF_amb"] = (tempC_amb*1.8)+32
-        chill_data["humidity"] = tempHumid.humidity
+        chill_data["tempC_amb"] = round(tempHumid.temperature, 3)
+        chill_data["tempF_amb"] = round((chill_data["tempC_amb"]*1.8)+32, 3)
+        chill_data["humidity"] = round(tempHumid.humidity, 3)
 
     ### Time Gathering ###
     chill_data["time_stamp"] = time.strftime('%x %X')
@@ -123,9 +125,9 @@ if __name__ == "__main__":
         "elapsed_time": 0,
         "tempC_probe": 0,
         "tempF_probe": 0,
-        "tempC_amb": -1,
-        "tempF_amb": -1,
-        "humidity": -1
+        "tempC_amb": 0,
+        "tempF_amb": 0,
+        "humidity": 0
     }
 
     #add column titles to file
@@ -147,7 +149,17 @@ if __name__ == "__main__":
     @sio.event
     def disconnect():
         print("Disconnected from Server!")
+    @sio.event
+    def start(started):
+        if started == 'true':
+            print("Starting!")
+            collect_data_and_send()
+            sio.emit('running', 'true')
+        else:
+            print("Stopping!")
+            data_thread.cancel()
+            sio.emit('running', 'false')
 
     #connect to server and start reading data
     sio.connect('http://'+ip+':5000')
-    collect_data_and_send()
+    sio.emit('running', 'false')
