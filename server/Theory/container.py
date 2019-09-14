@@ -12,8 +12,7 @@ class Container:
     - can (coming soon)
     
     Example:
-    b = Container('bottle')
-    c = Container('can')
+    b = Container(peroni_bottle)
     
     Attributes
     ___________

@@ -1,5 +1,15 @@
 # Theory Brainstorm Notes
 
+
++ chill_timer
+    + thermal_resistance (e.g. ThermalResistance(Beverage,Container,StartTemp,AtmTemp))
+    + container (e.g. Container(peroni_bottle))
+    + beverage (e.g. Beverage(peroni_bottle))
+    + bev starting intial temp
+    + freezer temp
+    + atmospheric (room) temp
+
+
 ## Theory
 Important variables for heat transfer are are:
 - Fluid Properites (heat capacity, specific density(ies))

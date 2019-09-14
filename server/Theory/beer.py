@@ -22,7 +22,7 @@ class Beverage:
         if self.container_type == 'beer':
             return self.beer(beverage)
         else:
-            print('container type not available yet')
+            print('beverage type not available yet')
 
     def beer(self,beverage):
         '''defines geometric and material attributes for the

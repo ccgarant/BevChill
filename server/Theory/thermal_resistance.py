@@ -6,13 +6,19 @@ class ThermalResistance:
     """
     A class used to calculate the thermal resistance properties
     
-    Attributes
+    Attributes:
     beverage
     container 
     ___________
     
+    Parameters:
+    start_temp - In Celcius
+    atm_temp - In Celcius
+    
+    -----------
     
     Methods
+    
     ___________
     
         
@@ -24,10 +30,10 @@ class ThermalResistance:
 
         '''Assumptions'''
         #For now assume freezer temp T_inf = 273.15K (0 deg C, 32 deg F)
-        self.T_atm = atm_temp + 273.15
-        self.T_inf = 276  #[degK] 37.6 degF
-        self.T_s   = start_temp + 273.15
-        self.gravity = 9.81 #m/s**2, gravity
+        self.T_atm = atm_temp + 273.15      #atm_temp in degC
+        self.T_inf = 276                    #[degK] 37.6 degF
+        self.T_s   = start_temp + 273.15    #start_temp in degC
+        self.gravity = 9.81                 #m/s**2, gravity
         self.sigma = 5.67e-8  #[W/(m**2*degK**4)] radiation coefficient sigma
         
         print('\nInitial Conditions')
