@@ -15,7 +15,7 @@ import seaborn as sns; sns.set()
 
 
 #determine the data test file to read
-file = 'Perroni_bottle_20190725.csv'
+file = 'Perroni_bottle_20190812.csv'
 file_split = file.split('.')
 file_name = file_split[0] # e.g. 'DogFishHead_SeaQuenchAle_Can_20190726'
 
@@ -24,17 +24,17 @@ base_dir = os.getcwd()
 os.chdir("TestResults")
 
 #read in data as a dataframe
-p = pd.read_csv(file,names=['time_stamp','elapsed_time','tempC_probe',
-       'tempF_probe','tempC_amb','tempF_amb','humidity %'])
+p = pd.read_csv(file,names=['elapsed_time','tempC_amb','elapsed_time_formatted','tempF_amb','tempC_probe',
+       'tempF_probe','time_stamp','humidity'])
 
 #preprocessing cleaning data
 
 #remove brackets at the beginning and end of the list
-p['time_stamp'] = p['time_stamp'].str.strip("[")
-p['humidity %'] = p['humidity %'].str.strip("]")
+p['elapsed_time'] = p['elapsed_time'].str.strip("[")
+p['humidity'] = p['humidity'].str.strip("]")
 
 #ambient freezer air temp, plot of intermittent readings
-p[:30].plot(x='elapsed_time',y='tempC_amb',figsize=(10,5),lw=4,title=file_name)
+p[:30].plot(x='elapsed_time_formatted',y='tempC_amb',figsize=(10,5),lw=4,title=file_name)
 
 #ambient sensor is intermittent, randomly writes 0, this 
 #for now smooths the data. It replaces all 0s as NaN then 
